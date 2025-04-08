@@ -1,0 +1,15 @@
+{
+    "python": "fewshot_prompts/python_fewshot_v1.py",
+    "java": "fewshot_prompts/java_fewshot_v1.java",
+    "javascript": "fewshot_prompts/javascript_fewshot_v1.js",
+    "typescript": "fewshot_prompts/typescript_fewshot.ts",
+    "kotlin": "fewshot_prompts/kotlin_fewshot_v1.kt",
+    "ruby": "fewshot_prompts/ruby_fewshot_v1.rb",
+    "php": "fewshot_prompts/php_fewshot_v1.php",
+    "cpp": "fewshot_prompts/cpp_fewshot.cpp",
+    "csharp": "fewshot_prompts/csharp_fewshot.cs",
+    "go": "fewshot_prompts/go_fewshot.go",
+    "perl": "fewshot_prompts/perl_fewshot.perl",
+    "scala": "fewshot_prompts/scala_fewshot.scala",
+    "swift": "fewshot_prompts/swift_fewshot.swift"
+  }

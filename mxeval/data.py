@@ -54,13 +54,14 @@ def write_jsonl(filename: str, data: Iterable[Dict], append: bool = False):
 
 
 def get_metadata(dataset, metadata_type="problem"):
-  assert metadata_type in ["problem", "example"]
+  assert metadata_type in ["problem", "example", "fewshot"]
   assert dataset in ["mbxp", "multi-humaneval", "mathqa-x"], f"Unsupported dataset {dataset}"
   dataset_dirmap = {"mbxp": "mbxp",
                     "multi-humaneval": "multilingual_humaneval",
                     "mathqa-x": "multilingual_mathqa"}
   typemap = {"problem": "metadata.json",
-             "example": "metadata_examples.json"}
+             "example": "metadata_examples.json", 
+             "fewshot": "metadata_fewshot.json"}
   datadir = os.path.join(ROOT, "..", "data", dataset_dirmap[dataset])
   path =  os.path.join(datadir, typemap[metadata_type])
   with open(path, "r") as f:
@@ -80,6 +81,16 @@ def get_data(dataset="mbxp", language="python"):
   datafile = metadata[language.lower()]
   print(f"Loading {dataset} | language = {language}")
   return read_problems(os.path.join(datadir, datafile))
+
+
+def get_fewshot(dataset="mbxp", language="python"):
+  dataset_ = "mbxp" if dataset == "multi-humaneval" else dataset
+  metadata, datadir = get_metadata(dataset_, metadata_type="fewshot")
+  if language.lower() not in metadata:
+    raise ValueError(f"Language {language} not found in metadata file")
+  datafile = metadata[language.lower()]
+  print(f"Loading {dataset} | language = {language}")
+  return open(os.path.join(datadir, datafile), "r").read()
 
 
 # due to similar format, examples from mbxp are sufficient to be used
